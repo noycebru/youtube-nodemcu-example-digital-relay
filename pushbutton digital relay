@@ -1,0 +1,30 @@
+// push button digital relay with nodemcu esp8266
+// written by noycebru
+
+#include <ESP8266WiFi.h>
+
+const int buttonPin = 4; // 4 represent gpio4 or d2 on the nodemcu esp8266
+int relay = 5; // 5 represent gpio5 or d1 on the nodemcu esp8266
+int buttonState = 0;
+
+void setup() { // put your setup code here, to run once
+
+  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(relay, OUTPUT);
+  Serial.begin(115200);
+  Serial.println();
+  digitalWrite(relay, LOW);
+  delay(100);
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+
+ if (buttonState == LOW) {
+    // turn LED on:
+    digitalWrite(relay, HIGH);
+    } else {
+      // turn LED off:
+      digitalWrite(relay, LOW);
+  }
+}
